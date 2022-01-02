@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text, View, StyleSheet, TextInput, Image} from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, TouchableWithoutFeedback} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -8,7 +8,7 @@ import search from '../apis/search'
 const styles = StyleSheet.create({
     header: {
         position: 'absolute', 
-        top: 0, 
+        top: 5, 
         flex: 1, 
         alignSelf: 'stretch', 
         right: '15%', 
@@ -72,6 +72,7 @@ const Home = ({ navigation }) => {
             </View>
             <ScrollView style={[{display:'none'}, defaultStyle, styles.searchBox]}>
                     {searchRs.map(item => 
+                    <TouchableWithoutFeedback onPress={() => console.log(item.name)} underlayColor="white" key={item.name}>
                         <View style={styles.searchRs}>
                             <Image
                                 style={{padding: 40, position: 'absolute', left: 0}}
@@ -82,8 +83,9 @@ const Home = ({ navigation }) => {
                                     <Text>Mô tả: {item.desc}</Text>
                                 </View>
                         </View>
+                    </TouchableWithoutFeedback>
                     )}    
-                </ScrollView>
+            </ScrollView>
         </View>
     )
 }
