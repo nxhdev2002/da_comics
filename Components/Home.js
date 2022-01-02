@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text, View, StyleSheet, TextInput} from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -15,16 +15,7 @@ const styles = StyleSheet.create({
         left: '15%',
         flexDirection:'row',
         flexWrap:'wrap',
-    },
-    bottom: {
-        position: 'absolute', 
-        top: 100, 
-        flex: 1, 
-        left: 0,
-        right: 0,
-        alignSelf: 'stretch', 
-        flexDirection:'row',
-        flexWrap:'wrap',
+        elevation: 99,
     },
     searchContainer: {
         position: 'absolute', 
@@ -37,6 +28,13 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch', 
         right: '15%', 
         left: '15%',
+    },
+    searchBox: {
+        top: '10%',
+        padding: 50,
+    },
+    searchRs: {
+        padding: 60,
     },
     advanceContainer: {
         position: 'absolute',
@@ -69,12 +67,23 @@ const Home = ({ navigation }) => {
                         onChangeText={async (text) => {setSearchRs(await search(text));  setDefaultStyle({display: 'flex'})}}
                     />
                 </View>
-                <ScrollView style={[{display:'none'}, defaultStyle]}>
-                    {searchRs.map}
-                </ScrollView>
                 <Icon name="list" size={15} color="green" style={styles.advanceContainer}/>
                 <Icon name="user" size={15} color="green" style={styles.userContainer}/>
             </View>
+            <ScrollView style={[{display:'none'}, defaultStyle, styles.searchBox]}>
+                    {searchRs.map(item => 
+                        <View style={styles.searchRs}>
+                            <Image
+                                style={{padding: 40, position: 'absolute', left: 0}}
+                                source={{uri: item.thumb}} />
+                                <View style={{position: 'absolute', left: '50%'}}>
+                                    <Text>{item.name}</Text>
+                                    <Text>Chapter: {item.newchapter}</Text>
+                                    <Text>Mô tả: {item.desc}</Text>
+                                </View>
+                        </View>
+                    )}    
+                </ScrollView>
         </View>
     )
 }

@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 import Home from './Home';
-
+import Profile from './Profile';
 
 export default function Navigation() {
     return(
@@ -14,9 +14,14 @@ export default function Navigation() {
                 tabBarLabel: 'Home',
                 tabBarIcon: () => (
                     <Icon name="home" size={15} color="green" />
-                  ),
-                }}
-        />
+                  )
+                }} />
+            <Tab.Screen name="Profile" component={Profile} options={{
+                    tabBarLabel: 'Profile',
+                    tabBarIcon: () => (
+                        <Icon name="user" size={15} color="green" />
+                ),
+            }} />
         </Tab.Navigator>
     )
 }
