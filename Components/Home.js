@@ -72,7 +72,7 @@ const Home = ({ navigation }) => {
             </View>
             <ScrollView style={[{display:'none'}, defaultStyle, styles.searchBox]}>
                     {searchRs.map(item => 
-                    <TouchableWithoutFeedback onPress={() => console.log(item.name)} underlayColor="white" key={item.name}>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate('infoComicScreen', item)} underlayColor="white" key={item.name}>
                         <View style={styles.searchRs}>
                             <Image
                                 style={{padding: 40, position: 'absolute', left: 0}}

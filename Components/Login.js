@@ -106,45 +106,45 @@ const Login_Screen = ({ navigation }) => {
     useEffect(() => {
         getData(set_is_login, getemail, get_list_comics)
     }, [])
-    if (check_login == '0') {
+    if (check_login == '1') {
         return (
-            <SafeAreaView style={{marginTop: '40%'}}>
-                <View>
-                <Image
-                    style={{height:150, width: 150, alignSelf: "center", borderRadius: 8}}
-                    source={{
-                    uri: 'https://scontent.fhan3-1.fna.fbcdn.net/v/t1.15752-9/268426811_995039638027636_5962554827666651111_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=ae9488&_nc_ohc=XapqneeU5_MAX_48nJw&_nc_ht=scontent.fhan3-1.fna&oh=03_AVJbVl3HtZ00D9ZL1mSMsMPfj5aV4s-Z-C1wJU5OzV0hiA&oe=61F2E8D5',
-                    }}
-                />
-                </View>
-                <TextInput
-                    label="Tên đăng nhập"
-                    onChangeText={onChangeUser}
-                    value={user}
-                    mode={'flat'}
-                    style={styles.input}
-                />
-                <TextInput
-                    label="Mật khẩu"
-                    onChangeText={onChangePasswd}
-                    value={password}
-                    mode={'flat'}
-                    style={styles.input}
-                />
-                <TouchableOpacity style={styles.appLoginButton} onPress={() => login(user, password)}>
-                    <Text style={styles.appButtonText}>Tiếp tục</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.appRegisterButton} onPress={() => register(user, password)}>
-                    <Text style={styles.appButtonText}>Tạo tài khoản</Text>
-                </TouchableOpacity>
-            </SafeAreaView>
-        )
-    } else {
-      return (
           <Stack.Navigator>
             <Stack.Screen name="Navigation" component={Navigation} options={{headerShown: false}}/>
           </Stack.Navigator>
-      )
+        )
+    } else {
+      return (
+        <SafeAreaView style={{marginTop: '40%'}}>
+            <View>
+            <Image
+                style={{height:150, width: 150, alignSelf: "center", borderRadius: 8}}
+                source={{
+                uri: 'https://scontent.fhan3-1.fna.fbcdn.net/v/t1.15752-9/268426811_995039638027636_5962554827666651111_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=ae9488&_nc_ohc=XapqneeU5_MAX_48nJw&_nc_ht=scontent.fhan3-1.fna&oh=03_AVJbVl3HtZ00D9ZL1mSMsMPfj5aV4s-Z-C1wJU5OzV0hiA&oe=61F2E8D5',
+                }}
+            />
+            </View>
+            <TextInput
+                label="Tên đăng nhập"
+                onChangeText={onChangeUser}
+                value={user}
+                mode={'flat'}
+                style={styles.input}
+            />
+            <TextInput
+                label="Mật khẩu"
+                onChangeText={onChangePasswd}
+                value={password}
+                mode={'flat'}
+                style={styles.input}
+            />
+            <TouchableOpacity style={styles.appLoginButton} onPress={() => login(user, password)}>
+                <Text style={styles.appButtonText}>Tiếp tục</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.appRegisterButton} onPress={() => register(user, password)}>
+                <Text style={styles.appButtonText}>Tạo tài khoản</Text>
+            </TouchableOpacity>
+        </SafeAreaView>
+    )
     }
 }
 
