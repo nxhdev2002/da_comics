@@ -8,7 +8,7 @@ const Profile = ({ navigation }) => {
         navigation.setOptions({headerShown: false});
     }, [navigation]);
     return (
-        <Text>Hello</Text>
+        <Text>This is the profile page 2</Text>
     )
 }
 

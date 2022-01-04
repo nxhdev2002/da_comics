@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const search = async (keyword) => {
     let arrRs = []
-    let rs = await axios.get("http://www.nettruyengo.com/Comic/Services/SuggestSearch.ashx?q=" + keyword)
+    let rs = await axios.get("https://www.nettruyengo.com/Comic/Services/SuggestSearch.ashx?q=" + keyword)
     let regex = /^.+(?:(?:href|src)="(.*?)"|i>Chapter (.*)<|h3>(.*)<|i>(.*?)<\/i>\n<)/gm
     let m, c = 0, data={};
     while ((m = regex.exec(rs.data)) !== null) {

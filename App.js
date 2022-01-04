@@ -5,6 +5,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login_Screen from './Components/Login'
 import infoComicScreen from './Components/InfoComicScreen';
 import reading_screen from './Components/ReadingScreen';
+import codePush from "react-native-code-push";
+
+const codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_START };
+
+
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -18,4 +23,4 @@ const App = () => {
     </NavigationContainer>
   );
 }
-export default App;
+export default codePush(codePushOptions)(App);
