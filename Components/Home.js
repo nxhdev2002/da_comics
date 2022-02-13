@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { Text, View, StyleSheet, TextInput, Image, TouchableWithoutFeedback} from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, TouchableWithoutFeedback, BackHandler, Alert} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import search from '../apis/search'
+import {search} from '../apis/search'
 
 const styles = StyleSheet.create({
     header: {
@@ -54,6 +55,26 @@ const styles = StyleSheet.create({
 const Home = ({ navigation }) => {
     const [defaultStyle, setDefaultStyle] = useState();
     const [searchRs, setSearchRs] = useState([]);
+    useFocusEffect (() => {
+        const backAction = () => {
+          Alert.alert("Hold on!", "Are you sure you want to go back?", [
+            {
+              text: "Cancel",
+              onPress: () => null,
+              style: "cancel"
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() }
+          ]);
+          return true;
+        };
+    
+        const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+        );
+    
+        return () => backHandler.remove();
+      });
     React.useLayoutEffect(() => {
         navigation.setOptions({headerShown: false});
     }, [navigation]);

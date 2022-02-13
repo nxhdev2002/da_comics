@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 import Home from './Home';
-import Profile from './Profile';
+import AdultScreen from './AdultScreen';
 
 export default function Navigation() {
     return(
@@ -16,12 +16,12 @@ export default function Navigation() {
                     <Icon name="home" size={15} color="green" />
                   )
                 }} />
-            <Tab.Screen name="Profile" component={Profile} options={{
-                    tabBarLabel: 'Profile',
+            {/* <Tab.Screen name="Adult_Comics" component={AdultScreen} options={{
+                    tabBarLabel: '18+',
                     tabBarIcon: () => (
-                        <Icon name="user" size={15} color="green" />
+                        <Icon name="ban" size={15} color="green" />
                 ),
-            }} />
+            }} /> */}
         </Tab.Navigator>
     )
 }

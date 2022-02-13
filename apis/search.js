@@ -42,4 +42,31 @@ const search = async (keyword) => {
     return arrRs;
 }
 
-export default search;
+const adult_search = async (keyword) => {
+    let m, c = 0, data = {}, arrRs = []
+    let rs = await axios.get("https://hentaivn.moe/tim-kiem-truyen.html?key=" + keyword)
+    let regex = /(?:<p style="font-size: 18px; line-height: 22px;">\n<a href="(.*?)">(.*?)<\/a>|data-srcset="(.*?)")/gm
+    while ((m = regex.exec(rs.data)) !== null) {
+        console.log(m)
+        c+=1
+        switch(c) {
+            case 1:
+                data.thumb = m[3]
+                break
+            case 2:
+                data.url = m[1]
+                data.name = m[2]
+                c = 0
+                arrRs.push(data)
+                data = {}
+                break
+        }
+        
+    }
+    console.log(arrRs)
+    return arrRs;
+}
+export {
+    search,
+    adult_search
+}

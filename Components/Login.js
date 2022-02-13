@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Navigation from './Screen';
 import login from '../apis/login'
 import register from '../apis/register'
 
@@ -77,42 +75,45 @@ const styles = StyleSheet.create({
   }
 });
 
-const get_follow_comics = () => {}
-const getData = async (set_is_login, getemail, get_list_comics) => {
-  try {
-    const value = await AsyncStorage.getItem('is_login')
-    if (value !== '0') {
-      set_is_login('1')
-      email = await AsyncStorage.getItem('email')
-      getemail(email)
-      get_list_comics(await get_follow_comics("1"))
-    } else {
-      set_is_login('0')
-    }
-  } catch(e) {
-    set_is_login('0')
-  }
-}
+// const get_follow_comics = () => {}
+// const getData = async (set_is_login, getemail, get_list_comics) => {
+//   try {
+//     const value = await AsyncStorage.getItem('is_login')
+//     if (value !== '0') {
+//       set_is_login('1')
+//       email = await AsyncStorage.getItem('email')
+//       getemail(email)
+//       get_list_comics(await get_follow_comics("1"))
+//     } else {
+//       set_is_login('0')
+//     }
+//   } catch(e) {
+//     set_is_login('0')
+//   }
+// }
 
 const Login_Screen = ({ navigation }) => {
-    React.useLayoutEffect(() => {
-        navigation.setOptions({headerShown: false});
-    }, [navigation]);
-    const [check_login, set_is_login] = useState(0)
-    const [email, getemail] = useState('')
-    const [list_comics, get_list_comics] = useState([])
+    // return (
+    //   <View>Login page</View>
+    // )
+    // React.useLayoutEffect(() => {
+    //     navigation.setOptions({headerShown: false});
+    // }, [navigation]);
+    // const [check_login, set_is_login] = useState(0)
+    // const [email, getemail] = useState('')
+    // const [list_comics, get_list_comics] = useState([])
     const [user, onChangeUser] = React.useState(null);
     const [password, onChangePasswd] = React.useState(null);
-    useEffect(() => {
-        getData(set_is_login, getemail, get_list_comics)
-    }, [])
-    if (check_login == '1') {
-        return (
-          <Stack.Navigator>
-            <Stack.Screen name="Navigation" component={Navigation} options={{headerShown: false}}/>
-          </Stack.Navigator>
-        )
-    } else {
+    // useEffect(() => {
+    //     getData(set_is_login, getemail, get_list_comics)
+    // }, [])
+    // if (check_login == '1') {
+    //     return (
+    //       <Stack.Navigator>
+    //         <Stack.Screen name="Navigation" component={Navigation} options={{headerShown: false}}/>
+    //       </Stack.Navigator>
+    //     )
+    // } else {
       return (
         <SafeAreaView style={{marginTop: '40%'}}>
             <View>
@@ -145,7 +146,7 @@ const Login_Screen = ({ navigation }) => {
             </TouchableOpacity>
         </SafeAreaView>
     )
-    }
+    // }
 }
 
 export default Login_Screen;
