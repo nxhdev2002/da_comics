@@ -18,7 +18,7 @@ const infoComicScreen = ({route, navigation}) => {
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                 <Image
                     width={Dimensions.get('window').width}
-                    height={150} // height will be calculated automatically
+                    height={151} // height will be calculated automatically
                     source={{uri: route.params.thumb}}
                 />
             </View>
