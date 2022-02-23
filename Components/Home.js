@@ -8,27 +8,29 @@ import {search} from '../apis/search'
 
 const styles = StyleSheet.create({
     header: {
-        position: 'absolute', 
-        top: 5, 
+        // position: 'absolute', 
+        // top: 5, 
+        paddingTop: 5,
         flex: 1, 
-        alignSelf: 'stretch', 
-        right: '15%', 
-        left: '15%',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        // right: '15%', 
+        // left: '15%',
         flexDirection:'row',
         flexWrap:'wrap',
         elevation: 99,
     },
     searchContainer: {
-        position: 'absolute', 
+        // position: 'absolute', 
         borderColor:'green',
         borderWidth: 1,
         borderRadius: 50,
-        flex: 1, 
+        flex: 3, 
         flexDirection:'row',
         flexWrap:'wrap',
         alignSelf: 'stretch', 
-        right: '15%', 
-        left: '15%',
+        // right: '15%', 
+        // left: '15%',
     },
     searchBox: {
         top: '10%',
@@ -37,18 +39,16 @@ const styles = StyleSheet.create({
     searchRs: {
         padding: 60,
     },
-    advanceContainer: {
-        position: 'absolute',
-        left: '-15%',
-        padding: 25
+    headIcon: {
+        flex: 1.5, 
+        textAlign:'center', 
+        justifyContent:'center',
+        width:50,
+        paddingRight:0
     },
-    userContainer: {
-        position: 'absolute',
-        right: '-15%',
-        padding: 25
+    app: {
+        flex: 2
     }
-
-
 })
 
 
@@ -79,8 +79,9 @@ const Home = ({ navigation }) => {
         navigation.setOptions({headerShown: false});
     }, [navigation]);
     return (
-        <View>
+        <View style={{flex: 1}}>
             <View style={styles.header}>
+                <Icon name="list" size={15} color="green" style={styles.headIcon}/>
                 <View style={styles.searchContainer}>
                     <Icon name="search" size={15} color="green" style={{padding: 20}}/>
                     <TextInput
@@ -88,10 +89,9 @@ const Home = ({ navigation }) => {
                         onChangeText={async (text) => {setSearchRs(await search(text));  setDefaultStyle({display: 'flex'})}}
                     />
                 </View>
-                <Icon name="list" size={15} color="green" style={styles.advanceContainer}/>
-                <Icon name="user" size={15} color="green" style={styles.userContainer}/>
+                <Icon name="user" size={15} color="green" style={styles.headIcon}/>
             </View>
-            <ScrollView style={[{display:'none'}, defaultStyle, styles.searchBox]}>
+            <ScrollView style={[{display:'none', flex: 1}, defaultStyle, styles.searchBox]}>
                     {searchRs.map(item => 
                     <TouchableWithoutFeedback onPress={() => navigation.navigate('infoComicScreen', item)} underlayColor="white" key={item.name}>
                         <View style={styles.searchRs}>
@@ -107,6 +107,10 @@ const Home = ({ navigation }) => {
                     </TouchableWithoutFeedback>
                     )}    
             </ScrollView>
+
+            <View style={styles.app}>
+                <Text>Truyện mới cập nhật</Text>
+            </View>
         </View>
     )
 }

@@ -11,18 +11,20 @@ const get_data = async (url, chapter, setData) => {
     setData(await get_pictures(url.replace(/-\d+$/i, '') + "/chap-" + chapter + "/1"))
 }
 
-const render_image = ({item}) => (
-    <Image
-        width={Dimensions.get('window').width} // height will be calculated automatically
-        source={{uri: 'https://nxhdev.pro/api/da_comics/get_picture.php?url=' + encodeURIComponent(item)}}
-    />
-)
+const render_image = ({item}) => 
+    (
+        <Image
+            width={Dimensions.get('window').width} // height will be calculated automatically
+            source={{uri: 'https://nxhdev.pro/api/da_comics/get_picture.php?url=' + encodeURIComponent(item.replace(/https:\/\/|\/\/|http:\/\//gm, ''))}}
+        />
+    )
 const reading_screen = ({route, navigation}) => {
     const [data, setData] = useState([]) 
     useEffect(() => {
         get_data(route.params.url, route.params.chapter, setData)
         console.log(route.params.url)
     },[])
+    console.log(data)
     return (  
         <SafeAreaView>
             <FlatList
